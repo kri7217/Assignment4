@@ -17,7 +17,7 @@ body{
   }
   
   .container div{
-      display:flex-box;
+      display:flex;
   }
   
   .error{
