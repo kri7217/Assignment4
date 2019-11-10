@@ -14,6 +14,7 @@
     ]
   }
   var board = setBoard()
+  var emptyPositions = []
 
   // Creates 9x9 squares in DOM
   function generateUI() {
@@ -31,6 +32,9 @@
           //create input element, add eventListener and add to div
           let box = document.createElement('input')
           box.setAttribute('id', `${i}${j}`);
+          if (board[i][j] === 0) {
+            box.setAttribute('class', 'zeroItem')
+          }
           box.value = board[i][j]
           box.disabled = true
 
@@ -49,8 +53,14 @@
     for (let i = 0; i < 9; i++) {
 
       for (let j = 0; j < 9; j++) {
+        let doc = document.getElementById(`${i}${j}`)
 
-        document.getElementById(`${i}${j}`).value = board[i][j];
+        if (doc.classList.contains('zeroItem')) {
+          doc.classList.remove('zeroItem')
+          doc.classList.add('after0Change')
+        }
+
+        doc.value = board[i][j];
 
       }
 
@@ -157,7 +167,7 @@
   function solvePuzzle() {
     var limit = 9,
       i, row, column, value, found;
-    var emptyPositions = [];
+    //var emptyPositions = [];
 
     for (var i = 0; i < board.length; i++) {
       for (var j = 0; j < board[i].length; j++) {
